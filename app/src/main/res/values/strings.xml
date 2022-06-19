@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">EduCamp</string>
+    <string name="ble">Bluetooth</string>
+    <string name="network">Network</string>
+</resources>
