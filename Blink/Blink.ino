@@ -22,16 +22,36 @@
   https://www.arduino.cc/en/Tutorial/BuiltInExamples/Blink
 */
 
+#define INPIN 7
+
+size_t cnt;
+size_t filterMax;
+
 // the setup function runs once when you press reset or power the board
 void setup() {
+  cnt = 0;
+  filterMax = 20000;
+  
   // initialize digital pin LED_BUILTIN as an output.
   pinMode(LED_BUILTIN, OUTPUT);
+  pinMode(INPIN, INPUT);
 }
 
 // the loop function runs over and over again forever
 void loop() {
-  digitalWrite(LED_BUILTIN, HIGH);   // turn the LED on (HIGH is the voltage level)
-  delay(1000);                       // wait for a second
-  digitalWrite(LED_BUILTIN, LOW);    // turn the LED off by making the voltage LOW
-  delay(1000);                       // wait for a second
+
+  if (digitalRead(INPIN))
+  {
+    if (cnt >= filterMax)
+      cnt = filterMax;
+    else
+      ++cnt;
+  }
+  else
+    cnt = 0;
+
+  if (cnt >= filterMax)
+    digitalWrite(LED_BUILTIN, HIGH);   // turn the LED on (HIGH is the voltage level)
+  else
+    digitalWrite(LED_BUILTIN, LOW);   // turn the LED off (HIGH is the voltage level)
 }
