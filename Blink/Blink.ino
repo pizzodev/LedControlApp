@@ -29,6 +29,7 @@ size_t filterMax;
 
 // the setup function runs once when you press reset or power the board
 void setup() {
+  Serial.begin(9600);
   cnt = 0;
   filterMax = 20000;
   
@@ -39,8 +40,16 @@ void setup() {
 
 // the loop function runs over and over again forever
 void loop() {
+  // send data only when you receive data:
+  if (Serial.available() > 0) {
+    // read the incoming byte:
+    byte incomingByte = Serial.read();
 
-  if (digitalRead(INPIN))
+    // say what you got:
+    Serial.print("I received: ");
+    Serial.println(incomingByte, DEC);
+  }
+ /* if (digitalRead(INPIN))
   {
     if (cnt >= filterMax)
       cnt = filterMax;
@@ -54,4 +63,5 @@ void loop() {
     digitalWrite(LED_BUILTIN, HIGH);   // turn the LED on (HIGH is the voltage level)
   else
     digitalWrite(LED_BUILTIN, LOW);   // turn the LED off (HIGH is the voltage level)
+    */
 }
