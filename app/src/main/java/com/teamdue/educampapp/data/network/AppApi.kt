@@ -1,4 +1,4 @@
-package com.teamdue.educampapp.network
+package com.teamdue.educampapp.data.network
 
 import retrofit2.http.GET
 import javax.inject.Singleton

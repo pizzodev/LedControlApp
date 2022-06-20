@@ -1,6 +1,6 @@
-package com.teamdue.educampapp.presentation
+package com.teamdue.educampapp.presentation.di
 
-import com.teamdue.educampapp.network.AppApi
+import com.teamdue.educampapp.data.network.AppApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

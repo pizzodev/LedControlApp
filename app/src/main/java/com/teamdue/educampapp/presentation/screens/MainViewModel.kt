@@ -1,4 +1,4 @@
-package com.teamdue.educampapp.presentation
+package com.teamdue.educampapp.presentation.screens
 
 import androidx.lifecycle.ViewModel
 
