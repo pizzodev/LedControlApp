@@ -1,4 +1,4 @@
-package com.teamdue.educampapp
+package com.teamdue.educampapp.presentation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -22,22 +22,9 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    Greeting("Android")
+                    AppNavigation()
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    EduCampAppTheme {
-        Greeting("Android")
     }
 }
