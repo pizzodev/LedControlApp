@@ -19,12 +19,7 @@ class MainViewModel @Inject constructor(
     fun initViewModel(stat: MutableStateFlow<String>, useMockEnv: Boolean) {
         try {
             viewModelScope.launch {
-                stat.value =
-                    if (useMockEnv) {
-                        useCases.getDataMocked().pojoField
-                    } else {
-                        useCases.getData().pojoField
-                    }
+                stat.value = useCases.getData(useMockEnv).pojoField
             }
         } catch (e: Exception) {
             stat.value = "${e.message}"

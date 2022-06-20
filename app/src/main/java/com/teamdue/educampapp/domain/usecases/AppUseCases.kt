@@ -10,12 +10,11 @@ class AppUseCases @Inject constructor(
     private val mockDatasource: MockDatasource
 ) {
 
-    suspend fun getData(): PojoEntity {
-        return remoteDatasource.getData().toPojoEntity()
-    }
-
-    suspend fun getDataMocked(): PojoEntity {
-        return mockDatasource.getDataMocked().toPojoEntity()
+    suspend fun getData(isMocked: Boolean): PojoEntity {
+        return if (isMocked)
+            remoteDatasource.getData().toPojoEntity()
+        else
+            mockDatasource.getDataMocked().toPojoEntity()
     }
 
 }
