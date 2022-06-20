@@ -1,7 +1,10 @@
 package com.teamdue.educampapp.presentation.screens
 
+import androidx.compose.ui.res.booleanResource
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.teamdue.educampapp.R
+import com.teamdue.educampapp.domain.usecases.AppUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
@@ -9,12 +12,19 @@ import java.lang.Exception
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor(): ViewModel() {
+class MainViewModel @Inject constructor(
+    private val useCases: AppUseCases
+): ViewModel() {
 
-    fun initViewModel(stat: MutableStateFlow<String>) {
+    fun initViewModel(stat: MutableStateFlow<String>, useMockEnv: Boolean) {
         try {
             viewModelScope.launch {
-                stat.value = "Hello embedded extended team2!"
+                stat.value =
+                    if (useMockEnv) {
+                        useCases.getDataMocked().pojoField
+                    } else {
+                        useCases.getData().pojoField
+                    }
             }
         } catch (e: Exception) {
             stat.value = "${e.message}"

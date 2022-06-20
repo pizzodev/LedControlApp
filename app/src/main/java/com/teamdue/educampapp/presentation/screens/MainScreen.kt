@@ -9,8 +9,10 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.booleanResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.teamdue.educampapp.R
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -22,7 +24,7 @@ fun MainScreen(navController: NavController) {
     val viewModel = hiltViewModel<MainViewModel>()
     val stat = MutableStateFlow("")
 
-    viewModel.initViewModel(stat)
+    viewModel.initViewModel(stat, booleanResource(id = R.bool.useMockEnv))
 
     //Ui building
     ValueSurface(stat.asStateFlow())

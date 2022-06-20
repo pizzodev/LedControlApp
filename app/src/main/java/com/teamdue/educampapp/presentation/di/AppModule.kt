@@ -16,7 +16,7 @@ class AppModule {
     @Singleton
     fun provideApi(): AppApi {
         return Retrofit.Builder()
-            .baseUrl("TOBE")
+            .baseUrl("http://TOBE")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(AppApi::class.java)
