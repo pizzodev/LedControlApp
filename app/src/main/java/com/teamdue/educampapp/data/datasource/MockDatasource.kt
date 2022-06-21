@@ -7,10 +7,16 @@ class MockDatasource @Inject constructor(
     //Nothing needed
 ) {
 
-    suspend fun getDataMocked(): PojoDto {
+    suspend fun powerOnMocked(): PojoDto {
         val pojoItem = PojoDto(
-            "Marco Lisi",
-            "HelloEmbeddedExtendedTeam2@hotmail.com"
+            true
+        )
+        return pojoItem
+    }
+
+    suspend fun powerOffMocked(): PojoDto {
+        val pojoItem = PojoDto(
+            false
         )
         return pojoItem
     }

@@ -12,14 +12,14 @@ class AppUseCases @Inject constructor(
 
     suspend fun powerOn(isMocked: Boolean): PojoEntity {
         return if (isMocked)
-            mockDatasource.getDataMocked().toPojoEntity()
+            mockDatasource.powerOnMocked().toPojoEntity()
         else
             remoteDatasource.powerOn().toPojoEntity()
     }
 
     suspend fun powerOff(isMocked: Boolean): PojoEntity {
         return if (isMocked)
-            mockDatasource.getDataMocked().toPojoEntity()
+            mockDatasource.powerOffMocked().toPojoEntity()
         else
             remoteDatasource.powerOff().toPojoEntity()
     }
