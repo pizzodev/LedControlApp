@@ -1,5 +1,6 @@
 package com.teamdue.educampapp.presentation.screens
 
+import androidx.compose.runtime.State
 import androidx.compose.ui.res.booleanResource
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -16,13 +17,22 @@ class MainViewModel @Inject constructor(
     private val useCases: AppUseCases
 ): ViewModel() {
 
-    fun initViewModel(stat: MutableStateFlow<String>, useMockEnv: Boolean) {
-        try {
-            viewModelScope.launch {
-                stat.value = useCases.getData(useMockEnv).pojoField
+    fun powerOn(stat: MutableStateFlow<String>, useMockEnv: Boolean) {
+        viewModelScope.launch {
+            try {
+                stat.value = useCases.powerOn(useMockEnv).toBeautifulString()
+            } catch (e: Exception) {
+                stat.value = "${e.message}"
             }
-        } catch (e: Exception) {
-            stat.value = "${e.message}"
+        }
+    }
+    fun powerOff(stat: MutableStateFlow<String>, useMockEnv: Boolean) {
+        viewModelScope.launch {
+            try {
+                stat.value = useCases.powerOff(useMockEnv).toBeautifulString()
+            } catch (e: Exception) {
+                stat.value = "${e.message}"
+            }
         }
     }
 }

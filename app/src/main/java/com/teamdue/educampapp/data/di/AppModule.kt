@@ -1,4 +1,4 @@
-package com.teamdue.educampapp.presentation.di
+package com.teamdue.educampapp.data.di
 
 import com.teamdue.educampapp.data.network.AppApi
 import dagger.Module
@@ -16,7 +16,7 @@ class AppModule {
     @Singleton
     fun provideApi(): AppApi {
         return Retrofit.Builder()
-            .baseUrl("http://TOBE")
+            .baseUrl("http://10.30.24.219:5000/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(AppApi::class.java)

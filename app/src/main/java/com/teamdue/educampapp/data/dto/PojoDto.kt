@@ -3,11 +3,13 @@ package com.teamdue.educampapp.data.network.dto
 import com.teamdue.educampapp.data.network.entities.PojoEntity
 
 data class PojoDto(
-    val pojoField: String
+    val name: String,
+    val email: String
 ) {
     fun toPojoEntity(): PojoEntity {
         return PojoEntity(
-            pojoField = this.pojoField
+            name = this.name,
+            email = this.email
         )
     }
 }

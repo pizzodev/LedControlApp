@@ -8,8 +8,13 @@ class RemoteDatasource @Inject constructor(
     private val appApi: AppApi
 ) {
 
-    suspend fun getData(): PojoDto {
-        val pojoItem = appApi.getSomething()
+    suspend fun powerOn(): PojoDto {
+        val pojoItem = appApi.powerOn()
+        return pojoItem
+    }
+
+    suspend fun powerOff(): PojoDto {
+        val pojoItem = appApi.powerOff()
         return pojoItem
     }
 }

@@ -9,7 +9,8 @@ class MockDatasource @Inject constructor(
 
     suspend fun getDataMocked(): PojoDto {
         val pojoItem = PojoDto(
-            "Hello embedded extended team2!"
+            "Marco Lisi",
+            "HelloEmbeddedExtendedTeam2@hotmail.com"
         )
         return pojoItem
     }

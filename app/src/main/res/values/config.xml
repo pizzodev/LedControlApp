@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <bool name="useMockEnv">true</bool>
+    <bool name="useMockEnv">false</bool>
 </resources>

@@ -6,6 +6,9 @@ import javax.inject.Singleton
 
 @Singleton
 interface AppApi {
-    @GET("TOBE")
-    suspend fun getSomething(): PojoDto
+    @GET("power/on")
+    suspend fun powerOn(): PojoDto
+
+    @GET("power/off")
+    suspend fun powerOff(): PojoDto
 }
