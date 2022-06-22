@@ -2,7 +2,7 @@ package com.teamdue.educampapp.domain.usecases
 
 import com.teamdue.educampapp.data.network.datasource.MockDatasource
 import com.teamdue.educampapp.data.network.datasource.RemoteDatasource
-import com.teamdue.educampapp.data.network.entities.PojoEntity
+import com.teamdue.educampapp.data.network.entities.LedStatusEntity
 import javax.inject.Inject
 
 class AppUseCases @Inject constructor(
@@ -10,18 +10,18 @@ class AppUseCases @Inject constructor(
     private val mockDatasource: MockDatasource
 ) {
 
-    suspend fun powerOn(isMocked: Boolean): PojoEntity {
+    suspend fun powerOn(isMocked: Boolean): LedStatusEntity {
         return if (isMocked)
-            mockDatasource.powerOnMocked().toPojoEntity()
+            mockDatasource.powerOnMocked().toLedStatusEntity()
         else
-            remoteDatasource.powerOn().toPojoEntity()
+            remoteDatasource.powerOn().toLedStatusEntity()
     }
 
-    suspend fun powerOff(isMocked: Boolean): PojoEntity {
+    suspend fun powerOff(isMocked: Boolean): LedStatusEntity {
         return if (isMocked)
-            mockDatasource.powerOffMocked().toPojoEntity()
+            mockDatasource.powerOffMocked().toLedStatusEntity()
         else
-            remoteDatasource.powerOff().toPojoEntity()
+            remoteDatasource.powerOff().toLedStatusEntity()
     }
 
 }
