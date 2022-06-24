@@ -38,6 +38,7 @@ fun MainScreen(navController: NavController) {
 fun ValueSurface(viewModel: MainViewModel) {
 
     val isMock = booleanResource(id = R.bool.useMockEnv)
+    val state = viewModel.messageFromSocket.asStateFlow().collectAsState()
 
     Surface(modifier = Modifier
         .fillMaxHeight()
@@ -46,11 +47,8 @@ fun ValueSurface(viewModel: MainViewModel) {
     ) {
         Column(
             modifier = Modifier.padding(20.dp),
-            verticalArrangement = Arrangement.SpaceBetween
+            verticalArrangement = Arrangement.Center
         ) {
-
-            val state = viewModel.messageFromSocket.asStateFlow().collectAsState()
-
             Image(
                 painterResource(
                     if (evaluateState(viewModel.messageFromSocket))
@@ -72,20 +70,21 @@ fun ValueSurface(viewModel: MainViewModel) {
                     }
             )
 
-            Row(
-                modifier = Modifier
-                .fillMaxWidth(),
-                horizontalArrangement = Arrangement.End,
-                verticalAlignment = Alignment.Bottom
-            ) {
-                AnimatedVisibility(visible = state.value != null) {
-                    Text(
-                        text = "Status from server: " + state
-                            .value?.toLedStatusEntity().toString()
-                    )
-                }
-            }
+        }
 
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(10.dp),
+            horizontalArrangement = Arrangement.End,
+            verticalAlignment = Alignment.Bottom
+        ) {
+            AnimatedVisibility(visible = state.value != null) {
+                Text(
+                    text = "Field led is: " + state
+                        .value?.toLedStatusEntity().toString()
+                )
+            }
         }
     }
 }

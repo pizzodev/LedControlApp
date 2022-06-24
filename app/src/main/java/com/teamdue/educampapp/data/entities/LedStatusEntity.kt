@@ -6,8 +6,12 @@ data class LedStatusEntity(
     val ledStatus: Boolean
 ) {
     override fun toString(): String {
-        return ledStatus.toString()
+        return when (ledStatus) {
+            true -> "ON"
+            false -> "OFF"
+        }
     }
+
     fun toLedStatusDto(): LedStatusDto {
         return LedStatusDto(
             ledStatus = this.ledStatus
